@@ -29,9 +29,9 @@ import net.fabricmc.api.DedicatedServerModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
-import net.minecraft.util.PacketByteBuf;
 
 public class ForgingBeyondServer implements DedicatedServerModInitializer {
     private static final String SERVER_MOD_NAME = "Forging Beyond Server";
@@ -43,15 +43,15 @@ public class ForgingBeyondServer implements DedicatedServerModInitializer {
                 "https://www.curseforge.com/minecraft/mc-mods/forging-beyond";
 
         ServerPlayNetworking.registerGlobalReceiver(ContentProvider.CLIENT_TO_SERVER_ID, ((server, player, handler, buf, responseSender) -> {
-                    PacketByteBuf sBuf = PacketByteBufs.create();
-                    sBuf.writeInt(ContentProvider.getCustomIntLimit());
-                    if (ServerPlayNetworking.canSend(player, ContentProvider.SEND_INT_TO_CLIENT_ID)) {
-                        ServerPlayNetworking.send(player, ContentProvider.SEND_INT_TO_CLIENT_ID, sBuf);
-                    }
-                    else {
-                        player.networkHandler.disconnect(new LiteralText(disconnectMessage));
-                        ContentProvider.logger(SERVER_MOD_NAME).warn(player.getEntityName() + " has been kicked from the server, could not send back a packet response for an unknown reason!");
-                    }
+            PacketByteBuf sBuf = PacketByteBufs.create();
+            sBuf.writeInt(ContentProvider.getCustomIntLimit());
+            if (ServerPlayNetworking.canSend(player, ContentProvider.SEND_INT_TO_CLIENT_ID)) {
+                ServerPlayNetworking.send(player, ContentProvider.SEND_INT_TO_CLIENT_ID, sBuf);
+            }
+            else {
+                player.networkHandler.disconnect(new LiteralText(disconnectMessage));
+                ContentProvider.logger(SERVER_MOD_NAME).warn(player.getEntityName() + " has been kicked from the server, could not send back a packet response for an unknown reason!");
+            }
         }));
         ServerEntityEvents.ENTITY_LOAD.register(((entity, world) -> {
             if (entity instanceof ServerPlayerEntity) {

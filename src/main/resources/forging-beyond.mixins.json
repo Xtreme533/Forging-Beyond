@@ -4,7 +4,7 @@
   "package": "com.cce.forgingbeyond.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "AnvilContainerMixin"
+    "AnvilScreenHandlerMixin"
   ],
   "client": [
     "AnvilScreenMixin"
