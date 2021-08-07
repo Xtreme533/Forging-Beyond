@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.cce.forgingbeyond.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "AnvilContainerMixin"
+  ],
+  "client": [
+    "AnvilScreenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
