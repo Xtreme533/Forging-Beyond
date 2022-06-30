@@ -1,7 +1,6 @@
 # This mod is no longer maintained.
-I have no motivation to continue this little project as I'm slowly moving away from Java as my primary language.
-I don't remember my credentials to CurseForge either, and thus the mod will remain in the state it is now.
-In theory the mod should continue working in 1.19, but I have neither tested this nor do I have will to do so.
+
+See [another mod of mine that does the same exact thing, but better.](https://github.com/majestic-0/anvil-delimited)
 
 
 # Forging-Beyond
